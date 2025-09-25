@@ -26,8 +26,10 @@ public class UserDao {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	 
-	
+	 // sirve para subir el archivo a git 
+//	 git add src
+//	 git commit -m "gitano" 
+//	 git push -u origin main
 	}
 }
 
