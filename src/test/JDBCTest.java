@@ -26,7 +26,7 @@ public class JDBCTest {
 //		DriverManager driverManager;
 //		// creamos una conexion con la base de datos mysql
 		// creamos un objeto que llame al objeto de conexion de dbhelper
-			Connection connection= new DBHelper().getConection();
+			Connection connection=  DBHelper.getConection();
 			try {
 //				connection =
 //					DriverManager.getConnection(dbURL, username, password);

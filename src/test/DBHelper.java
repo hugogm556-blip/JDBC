@@ -12,15 +12,15 @@ import java.sql.SQLException;
  */
 public class DBHelper {
 
-	String dbURL = "jdbc:mysql://localhost:3306/bbdd";
-	String username = "root";
-	String password = "admin";
+	private static String dbURL = "jdbc:mysql://localhost:3306/bbdd";
+	private static String username = "root";
+	private static String password = "admin";
 
 	// clase que administra los drivers de diferentes base de datos
 	DriverManager driverManager;
 	// creamos una conexion con la base de datos mysql
 	Connection connection;
-	public Connection getConection() {
+	public static Connection getConection() {
 		try {
 			return DriverManager.getConnection(dbURL, username, password);
 		} catch (SQLException e) {
