@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test;
+package user;
 
 /**
  * @author hugog24 sept 2025

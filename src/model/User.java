@@ -63,7 +63,7 @@ public class User {
 		this.name =name;
 		// this.name se refiere al string (objeto )de name y  =name es igual 
 		// user2 que lee el parametro name y saca hugo que es el nombre 
-		// que se ha puesto en test 
+		// que se ha puesto en user 
 	}
 
 	public User() {
