@@ -36,7 +36,7 @@ public class UserDao {
 		// sirve para subir el archivo a git
 //	 git add src
 //	 git commit -m "gitano" 
-//	 git push -u origin master
+//	 git push -u origin main
 		// xxxxxx
 	}
 }
