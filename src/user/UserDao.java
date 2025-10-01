@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class UserDao {
 
 	public void insert(int id, String name, String pasword, boolean vip, int height, String sex) {
-		String insertSQL = " INSERT INTO users  values (? , ? ,? , ? ,? ,?,?  )";
+		String insertSQL = " INSERT INTO users  values (? , ? ,?,?,?,? )";
 
 		Connection connection = DBHelper.getConection();
 		try {
@@ -26,17 +26,38 @@ public class UserDao {
 			ps.setInt(1, id);// Sustituir el primer placeholder con el valor de id
 			ps.setString(2, name);
 			ps.setString(3, pasword);
-
+			ps.setBoolean(4, vip);
+			ps.setFloat(5, height);
+			ps.setString(6, sex);
 			ps.executeUpdate();
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		// sirve para subir el archivo a git
 //	 git add src
 //	 git commit -m "gitano" 
 //	 git push -u origin main
 		// xxxxxx
+	}
+
+	public void delete() {
+		String deleteSQL =  "DELETE From users where id= 3 ";
+		Connection connection = DBHelper.getConection();
+		
+			try {
+				PreparedStatement ps = connection.prepareStatement(deleteSQL);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+		
+		
+		
 	}
 }

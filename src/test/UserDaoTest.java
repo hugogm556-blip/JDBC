@@ -11,6 +11,6 @@ import user.UserDao;
 public class UserDaoTest {
 	public static void main(String[] args) {
 		UserDao userDao = new UserDao();
-		userDao.insert(0,null,null,false, 0, null);
+		userDao.insert(8,null,null, false, 0, null);
 	}
 }
