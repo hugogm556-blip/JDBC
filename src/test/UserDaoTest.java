@@ -11,6 +11,17 @@ import user.UserDao;
 public class UserDaoTest {
 	public static void main(String[] args) {
 		UserDao userDao = new UserDao();
-		userDao.insert(8,null,null, false, 0, null);
+		userDao.insert(6,"hugo","lol", false, 0, null);
+		//UserDao userDeleteDao= new UserDao();
+		//userDeleteDao.delete(9);
+		//UserDao updateUserDao = new UserDao();
+		//updateUserDao.update("hugo", 1);
+		//UserDao selectUserDao= new UserDao();
+		//selectUserDao.findAll();
+		//UserDao findUserDao = new UserDao();
+		//findUserDao.find(1);
+	
+	
 	}
+	
 }

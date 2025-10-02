@@ -4,7 +4,6 @@
 package test;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,12 +43,15 @@ public class JDBCTest {
 			String insertSQL = " INSERT INTO users  values (3, " + " 'Hugo' " + ", " + " '245' " + ", 0, " + "1.8,"
 					+ " 'male'  )" + ",(4," + " 'mark'," + " 'lolo'," + " 1," + " 1.8," + "'male')";
 			String updateSQL = "UPDATE users SET name ='manu' where id = 1 ";
-			String selectSQL = " select * from users";
+			
 
 			String deleteSQL = "DELETE From users where id= 3 ";
+			
+			String selectSQL = " select * from users";
 			PreparedStatement ps = connection.prepareStatement(selectSQL);
 			// prepareStatment sirve para preparar todo tipo de SQL ETC
 			// sacar los datos con el select
+			
 			ResultSet resultSet = ps.executeQuery();
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");

@@ -5,7 +5,10 @@ package user;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import model.User;
 
 /**
  * @author hugog24 sept 2025 data access object for table
@@ -29,7 +32,13 @@ public class UserDao {
 			ps.setBoolean(4, vip);
 			ps.setFloat(5, height);
 			ps.setString(6, sex);
-			ps.executeUpdate();
+
+			// si nos devuelve 0 significa que no ha cambiado ninguna fila en
+			// en la base de datos
+			int result = ps.executeUpdate();
+			System.out.println(" insert rows " + result);
+			
+			
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -43,21 +52,92 @@ public class UserDao {
 		// xxxxxx
 	}
 
-	public void delete() {
-		String deleteSQL =  "DELETE From users where id= 3 ";
+	public void delete(int id) {
+		String deleteSQL = "DELETE From users where id = ? ";
+		Connection connection = DBHelper.getConection();
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(deleteSQL);
+			
+			ps.setInt(1, id);
+			int result =ps.executeUpdate();
+			System.out.println("we have delete " + result + " rows. ");
+			ps.executeUpdate();
+			
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void update(String name, int id) {
+		String updateSQL = "UPDATE users SET name = ? where id = ? ";
+		Connection connection = DBHelper.getConection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(updateSQL);
+			ps.setString(1, name);
+			ps.setInt(2, id);// Sustituir el primer placeholder con el valor de id
+
+			ps.executeUpdate();
+			connection.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			e.printStackTrace();
+		}
+
+	}
+
+	public User[] findAll() {
+		String selectSQL = "select * from users";
+		Connection connection = DBHelper.getConection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(selectSQL);
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				
+				int id = resultSet.getInt("id");
+				String name = resultSet.getString("name");
+				Boolean vip = resultSet.getBoolean("vip");
+				System.out.println(" record > id = " + id + " name = " + name + " vip = " + vip);
+			
+				}
+			}
+				
+			
+			catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+
+	}
+
+	//
+
+	public User find(int id) {
+		String selectSQL = "select * from users where id = ? ";
 		Connection connection = DBHelper.getConection();
 		
+			
 			try {
-				PreparedStatement ps = connection.prepareStatement(deleteSQL);
+				PreparedStatement ps = connection.prepareStatement(selectSQL);
+				ps.setInt(1, id);
+				ResultSet resultSet = ps.executeQuery();
 				
+				while (resultSet.next()) {
+					
+					id = resultSet.getInt("id");
+					String name = resultSet.getString("name");
+					Boolean vip = resultSet.getBoolean("vip");
+					System.out.println(" record > id = " + id + " name = " + name + " vip = " + vip);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
-			
-		
-		
-		
+		return null;
 	}
 }
