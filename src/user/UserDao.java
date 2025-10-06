@@ -117,7 +117,7 @@ public class UserDao {
 
 	//
 
-	public User find(int id) {
+	public User[] find(int id) {
 		String selectSQL = "select * from users where id = ? ";
 		Connection connection = DBHelper.getConection();
 		
@@ -126,6 +126,7 @@ public class UserDao {
 				PreparedStatement ps = connection.prepareStatement(selectSQL);
 				ps.setInt(1, id);
 				ResultSet resultSet = ps.executeQuery();
+				System.out.println("rows= " + resultSet.getFetchSize());
 				
 				while (resultSet.next()) {
 					

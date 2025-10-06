@@ -3,6 +3,7 @@
  */
 package test;
 
+import model.User;
 import user.UserDao;
 
 /**
@@ -10,16 +11,16 @@ import user.UserDao;
  */
 public class UserDaoTest {
 	public static void main(String[] args) {
-		UserDao userDao = new UserDao();
-		userDao.insert(6,"hugo","lol", false, 0, null);
+//		UserDao userDao = new UserDao();
+//		userDao.insert(6,"hugo","lol", false, 0, null);
 		//UserDao userDeleteDao= new UserDao();
 		//userDeleteDao.delete(9);
 		//UserDao updateUserDao = new UserDao();
 		//updateUserDao.update("hugo", 1);
 		//UserDao selectUserDao= new UserDao();
 		//selectUserDao.findAll();
-		//UserDao findUserDao = new UserDao();
-		//findUserDao.find(1);
+		UserDao findUserDao = new UserDao();
+		findUserDao.find(1);
 	
 	
 	}
