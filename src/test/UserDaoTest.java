@@ -17,8 +17,8 @@ public class UserDaoTest {
 		//userDeleteDao.delete(9);
 		//UserDao updateUserDao = new UserDao();
 		//updateUserDao.update("hugo", 1);
-		//UserDao selectUserDao= new UserDao();
-		//selectUserDao.findAll();
+		UserDao selectUserDao= new UserDao();
+		selectUserDao.findAll();
 		UserDao findUserDao = new UserDao();
 		findUserDao.find(1);
 	

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.User;
 
@@ -14,8 +15,11 @@ import model.User;
  * @author hugog24 sept 2025 data access object for table
  */
 public class UserDao {
-
+	int User[];
 	public void insert(int id, String name, String pasword, boolean vip, int height, String sex) {
+		for (int i = 0; i < User.length; i++) {
+			
+		}
 		String insertSQL = " INSERT INTO users  values (? , ? ,?,?,?,? )";
 
 		Connection connection = DBHelper.getConection();
@@ -47,7 +51,7 @@ public class UserDao {
 
 		// sirve para subir el archivo a git
 //	 git add src
-//	 git commit -m "gitano" 
+//	 git commit -m "git" 
 //	 git push -u origin main
 		// xxxxxx
 	}
@@ -92,17 +96,29 @@ public class UserDao {
 
 	public User[] findAll() {
 		String selectSQL = "select * from users";
+		// este array list sirve para que cuando nos quedamos espacio en la lista 
+		// este se hace mas grande y hace una copia de los datos originales o anteriores en la 
+		// nueva lista o array 
+		User[] users;
+		ArrayList<User> userList =
+				new ArrayList<User>();
 		Connection connection = DBHelper.getConection();
 		try {
 			PreparedStatement ps = connection.prepareStatement(selectSQL);
 			ResultSet resultSet = ps.executeQuery();
+			System.out.println("total rows is " +resultSet.last());
+			System.out.println("rows = " + resultSet.getFetchSize());
 			while (resultSet.next()) {
 				
 				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
-				Boolean vip = resultSet.getBoolean("vip");
+				boolean vip = resultSet.getBoolean("vip");
+				String pasword= resultSet.getString("pasword");
+				int height= resultSet.getInt("height");
+				String sex=  resultSet.getString("sex");
+
 				System.out.println(" record > id = " + id + " name = " + name + " vip = " + vip);
-			
+				userList.add(new User(id, name, vip, pasword, height, sex, height));
 				}
 			}
 				

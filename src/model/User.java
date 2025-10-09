@@ -80,4 +80,6 @@ public class User {
 		this.sex =sex;
 		this.age =age;
 	}
+
+	
 }
