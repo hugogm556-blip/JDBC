@@ -16,9 +16,10 @@ import model.User;
  */
 public class UserDao {
 	int User[];
+
 	public void insert(int id, String name, String pasword, boolean vip, int height, String sex) {
 		for (int i = 0; i < User.length; i++) {
-			
+
 		}
 		String insertSQL = " INSERT INTO users  values (? , ? ,?,?,?,? )";
 
@@ -41,8 +42,7 @@ public class UserDao {
 			// en la base de datos
 			int result = ps.executeUpdate();
 			System.out.println(" insert rows " + result);
-			
-			
+
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -62,12 +62,12 @@ public class UserDao {
 
 		try {
 			PreparedStatement ps = connection.prepareStatement(deleteSQL);
-			
+
 			ps.setInt(1, id);
-			int result =ps.executeUpdate();
+			int result = ps.executeUpdate();
 			System.out.println("we have delete " + result + " rows. ");
 			ps.executeUpdate();
-			
+
 			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -94,40 +94,37 @@ public class UserDao {
 
 	}
 
-	public User[] findAll() {
+	public ArrayList<User> findAll() {
 		String selectSQL = "select * from users";
-		// este array list sirve para que cuando nos quedamos espacio en la lista 
-		// este se hace mas grande y hace una copia de los datos originales o anteriores en la 
-		// nueva lista o array 
+		// este array list sirve para que cuando nos quedamos espacio en la lista
+		// este se hace mas grande y hace una copia de los datos originales o anteriores
+		// en la
+		// nueva lista o array
 		User[] users;
-		ArrayList<User> userList =
-				new ArrayList<User>();
+		ArrayList<User> userList = new ArrayList<User>();
 		Connection connection = DBHelper.getConection();
 		try {
 			PreparedStatement ps = connection.prepareStatement(selectSQL);
 			ResultSet resultSet = ps.executeQuery();
-			System.out.println("total rows is " +resultSet.last());
+			System.out.println("total rows is " + resultSet.last());
 			System.out.println("rows = " + resultSet.getFetchSize());
 			while (resultSet.next()) {
-				
+
 				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
 				boolean vip = resultSet.getBoolean("vip");
-				String pasword= resultSet.getString("pasword");
-				int height= resultSet.getInt("height");
-				String sex=  resultSet.getString("sex");
+				String pasword = resultSet.getString("pasword");
+				int height = resultSet.getInt("height");
+				String sex = resultSet.getString("sex");
 
 				System.out.println(" record > id = " + id + " name = " + name + " vip = " + vip);
 				userList.add(new User(id, name, vip, pasword, height, sex, height));
-				}
 			}
-				
-			
-			catch (Exception e) {
+			return userList;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-		
 
 	}
 
@@ -136,25 +133,24 @@ public class UserDao {
 	public User[] find(int id) {
 		String selectSQL = "select * from users where id = ? ";
 		Connection connection = DBHelper.getConection();
-		
-			
-			try {
-				PreparedStatement ps = connection.prepareStatement(selectSQL);
-				ps.setInt(1, id);
-				ResultSet resultSet = ps.executeQuery();
-				System.out.println("rows= " + resultSet.getFetchSize());
-				
-				while (resultSet.next()) {
-					
-					id = resultSet.getInt("id");
-					String name = resultSet.getString("name");
-					Boolean vip = resultSet.getBoolean("vip");
-					System.out.println(" record > id = " + id + " name = " + name + " vip = " + vip);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(selectSQL);
+			ps.setInt(1, id);
+			ResultSet resultSet = ps.executeQuery();
+			System.out.println("rows= " + resultSet.getFetchSize());
+
+			while (resultSet.next()) {
+
+				id = resultSet.getInt("id");
+				String name = resultSet.getString("name");
+				Boolean vip = resultSet.getBoolean("vip");
+				System.out.println(" record > id = " + id + " name = " + name + " vip = " + vip);
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
