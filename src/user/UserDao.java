@@ -106,8 +106,8 @@ public class UserDao {
 		try {
 			PreparedStatement ps = connection.prepareStatement(selectSQL);
 			ResultSet resultSet = ps.executeQuery();
-			System.out.println("total rows is " + resultSet.last());
-			System.out.println("rows = " + resultSet.getFetchSize());
+//			System.out.println("total rows is " + resultSet.last());
+//			System.out.println("rows = " + resultSet.getFetchSize());
 			while (resultSet.next()) {
 
 				int id = resultSet.getInt("id");
@@ -130,12 +130,14 @@ public class UserDao {
 
 	//
 
-	public User[] find(int id) {
+	public User find(int id) {
 		String selectSQL = "select * from users where id = ? ";
-		Connection connection = DBHelper.getConection();
 
-		try {
-			PreparedStatement ps = connection.prepareStatement(selectSQL);
+		try (Connection connection = DBHelper.getConection();
+				PreparedStatement ps = connection.prepareStatement(selectSQL);){
+			// try-with-resource statement, nos cierra la conexion 
+			// y otros recursos automaticamente 
+			
 			ps.setInt(1, id);
 			ResultSet resultSet = ps.executeQuery();
 			System.out.println("rows= " + resultSet.getFetchSize());
@@ -145,7 +147,14 @@ public class UserDao {
 				id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
 				Boolean vip = resultSet.getBoolean("vip");
+				String pasword = resultSet.getString("pasword");
+				int height = resultSet.getInt("height");
+				String sex = resultSet.getString("sex"); 
+				
 				System.out.println(" record > id = " + id + " name = " + name + " vip = " + vip);
+				
+				resultSet.close();
+				return new User(id, name, vip, pasword, height, sex, height);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
