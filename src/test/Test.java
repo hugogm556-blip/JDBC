@@ -10,7 +10,7 @@ public class Test {
 		user1.setName("laura");
 		User user2 = new User(2, "hugo");
 		User user3 = new User(3, "manolo");
-		User user4 = new User();
+        User user4 = new User(4, "camicha", true, " loro", 1.7f, "male", 18, 0);
 		
 		System.out.println(1);
 		System.out.println(user1.name);
