@@ -19,7 +19,7 @@ public class UserDaoTest {
 //		UserDao selectUserDao= new UserDao();
 //		//selectUserDao.findAll();
 //	UserDao findUserDao = new UserDao();
-////		findUserDao.find(1);
+//		findUserDao.find(1);
 //		ArrayList<User> users  = selectUserDao.findAll();
 //		System.out.println(users.size());
 //	
@@ -31,7 +31,7 @@ public class UserDaoTest {
 //			new User(16, "hugo", false, "assa", 3, "tres", 2, 2.4f),
 //			new User(17, "Cata", true, "asta", 5, "treshh", 34, 2.7f)	};
 //	userDao.insertAll(us);
-	//userDao.transfer(14, 15, 10);
+	userDao.transferWithQueryAndUpdate(14, 15, 10);
 	}
 	
 }

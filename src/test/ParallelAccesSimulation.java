@@ -27,7 +27,7 @@ public class ParallelAccesSimulation {
 			// creacion de hilo
 			// () -> {} = hace que el codigo sea mas flexible
 			Thread thread = new Thread(() -> {
-				userDao.transfer(fromUserId, toUserId, 1);
+				userDao.transferWithQueryAndUpdate(fromUserId, toUserId, 1);
 			});
 			threads.add(thread);
 

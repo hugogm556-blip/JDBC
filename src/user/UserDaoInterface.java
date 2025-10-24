@@ -19,7 +19,7 @@ public interface UserDaoInterface {
 	public int insertAll(User[] users);
 /**
  * transferir dinero de un usuario a otro
- * @param fromUserId el enviador 
+ * @param FromUserId el enviador
  * @param toUserId el recipiente 
  * @param amount cantidad dinero enviado 
  * @return
@@ -28,7 +28,7 @@ public interface UserDaoInterface {
 	
 	/**
 	 * transferir dinero de un usuario a otro
-	 * @param fromUserId el enviador 
+	 * @param FromUserId el enviador
 	 * @param toUserId el recipiente 
 	 * @param amount cantidad dinero enviado 
 	 * @return
@@ -37,10 +37,25 @@ public interface UserDaoInterface {
 	public boolean transferWithBatch(long FromUserId,long toUserId,float amount) ;
 
 
+    /**
+     * transferir dinero de un usuario a otro
+     * @param FromUserId el enviador
+     * @param toUserId el recipiente
+     * @param amount cantidad dinero enviado
+     * @return
+     */
 
+    public boolean transferWithQueryAndUpdate(long FromUserId,long toUserId,float amount) ;
 
+    /**
+     *
+     * @param FromUserId
+     * @param toUserId
+     * @param amount
+     * @return
+     */
 
-
+    public boolean transferWithTransactions(long FromUserId,long toUserId,float amount) ;
 
 
 }
