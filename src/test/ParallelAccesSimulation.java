@@ -16,18 +16,23 @@ public class ParallelAccesSimulation {
 		
 		// creamos un objeto que se pueda conectar a la clase UserDao
 		UserDao userDao = new UserDao();
-		long fromUserId = 15;
-		long toUserId = 14;
+		long fromUserId = 14;
+		long toUserId = 15;
 // creamos una lista con 100 espacios de capacidad
 		ArrayList<Thread> threads;
 		threads = new ArrayList<Thread>(100);
 // bucle que sirve para añadir 100 hilos en la capacidad de la lista a este threads.add(thread);
-		// porque el otro solo recorre las 100 posiciones 
-		for (int i = 0; i < 100; i++) {
+		// porque el otro solo recorre las 100 posiciones
+        System.out.println("number of processor= " +  Runtime.getRuntime().availableProcessors());
+		for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++) {
 			// creacion de hilo
 			// () -> {} = hace que el codigo sea mas flexible
 			Thread thread = new Thread(() -> {
-				userDao.transferWithQueryAndUpdate(fromUserId, toUserId, 1);
+                for (int j = 0;j<30;j++){
+				userDao.transferWithTransactions(fromUserId, toUserId, 1);
+                userDao.transferWithTransactions(toUserId, fromUserId, 1);
+
+                }
 			});
 			threads.add(thread);
 

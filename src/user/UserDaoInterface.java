@@ -58,6 +58,15 @@ public interface UserDaoInterface {
     public boolean transferWithTransactions(long FromUserId,long toUserId,float amount) ;
 
 
+    /**
+     *
+     * @param FromUserId
+     * @param toUserId
+     * @param amount
+     * @return
+     */
+    public boolean transferWithTransactionsWithoutDeadlock(long FromUserId,long toUserId,float amount) ;
+
 }
 
 
