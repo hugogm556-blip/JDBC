@@ -28,10 +28,11 @@ public class ParallelAccesSimulation {
 			// creacion de hilo
 			// () -> {} = hace que el codigo sea mas flexible
 			Thread thread = new Thread(() -> {
-                for (int j = 0;j<30;j++){
-				userDao.transferWithTransactions(fromUserId, toUserId, 1);
-                userDao.transferWithTransactions(toUserId, fromUserId, 1);
-
+                for (int j = 0;j<5;j++){
+				//userDao.transferWithTransactions(fromUserId, toUserId, 1);
+                //userDao.transferWithTransactions(toUserId, fromUserId, 1);
+                userDao.transferWithTransactionsWithoutDeadlock(fromUserId, toUserId, 1);
+                userDao.transferWithTransactionsWithoutDeadlock(toUserId, fromUserId, 1);
                 }
 			});
 			threads.add(thread);
